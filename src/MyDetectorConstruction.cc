@@ -34,7 +34,18 @@ G4VPhysicalVolume* MyDetectorConstruction::Construct()
   G4double env_sizeXY = base_size;
   G4double env_sizeZ = base_size;
 
-  G4Material* env_mat = nist->FindOrBuildMaterial("G4_Pb");
+  // G4Material* env_mat = nist->FindOrBuildMaterial("G4_Pb");
+
+  // Elements
+  G4Element* Bi = nist->FindOrBuildElement("Bi");
+  G4Element* Ge = nist->FindOrBuildElement("Ge");
+  G4Element* O  = nist->FindOrBuildElement("O");
+
+  // Build BGO (Bi4Ge3O12)
+  G4Material* env_mat = new G4Material("BGO", 7.13*g/cm3, 3);
+  env_mat->AddElement(Bi, 4);
+  env_mat->AddElement(Ge, 3);
+  env_mat->AddElement(O, 12);
 
   // Option to switch on/off checking of volumes overlaps
   //
