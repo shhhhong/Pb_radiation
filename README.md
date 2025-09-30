@@ -1,4 +1,4 @@
-## MyExampleB1-Extended: Detector Radiation Study with Geant4
+## Detector Radiation Study with Geant4
 
 This project extends the official Geant4 B1 example for radiation transport studies in BGO material.
 It introduces additional scoring and trajectory analysis capabilities with ROOT output.
