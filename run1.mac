@@ -1,0 +1,28 @@
+# Idle> /control/execute run1.mac
+
+/run/initialize
+#
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+# 
+# gamma 6 MeV to the direction (0.,0.,1.)
+#
+/gps/particle gamma
+/gps/energy 6 MeV
+/gps/pos/type Point
+/gps/pos/centre 0 0 -5 cm
+/gps/direction 0 0 1
+#
+/run/beamOn 5000
+# 
+# proton 210 MeV to the direction (0.,0.,1.)
+#
+/gps/particle proton
+/gps/energy 210 MeV
+/gps/pos/type Point
+/gps/pos/centre 0 0 -5 cm
+/gps/direction 0 0 1
+#
+/run/beamOn 1000

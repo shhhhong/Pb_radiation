@@ -1,0 +1,79 @@
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+# MyExampleB1: B1-Extended: Geant4 Example with Trajectory Analysis
+
+This project extends the official Geant4 example ** MyExampleB1** by adding
+trajectory recording and analysis functionality.
+
+- Original example: Geant4 B1 (Geant4 Collaboration, 1994–2006)  
+- Modifications: © 2025 Zhihao Song  
+- License: Geant4 Software License (see LICENSE)
+
+This software includes code developed by Members of the Geant4 Collaboration
+(http://cern.ch/geant4).
+
+-------------------------------------------------------------------
+
+This example extends the original B1 functionality by not only scoring 
+the energy deposit and dose in a selected volume, but also recording 
+the full particle trajectories and providing tools for their analysis.
+
+-------------------------------------------------------------------
+-------------------------------------------------------------------
+
+ 1- GEOMETRY DEFINITION
+
+   The geometry is constructed in the MyExampleB1::MyDetectorConstruction class.
+   There is one box for the world, which is made of water,
+   and one box for the envelope, which is made of Pb.
+
+   The materials are created with the help of the G4NistManager class,
+   which allows building a material from the NIST database using its name.
+   All available materials are listed in the Geant4 User's Guide for
+   Application Developers, Appendix 10: Geant4 Materials Database.
+
+ 2- PHYSICS LIST
+
+   The particle types and the physics processes used in this example are 
+   defined in a modular physics list based on FTFP_BERT. The default 
+   electromagnetic physics is replaced with the high-accuracy 
+   G4EmStandardPhysics_option4, and G4StepLimiterPhysics is added to 
+   control the step size of charged particles.
+
+
+ 3- PRIMARY GENERATOR
+
+   The primary generator is defined in the MyExampleB1::MyPrimaryGeneratorAction class.
+
+   It uses a G4GeneralParticleSource configured to emit mono-energetic 662 keV
+   gammas from a point at (0, 0, −60 cm), collimated along the +Z direction
+   towards the detector. These defaults can be overridden at run time via the
+   built-in GPS UI commands (e.g. /gps/particle, /gps/ene/type, /gps/ene/mono,
+   /gps/pos/*, /gps/ang/*).
+
+ 4- TRACK RECORD
+
+   The track recording is handled in the MyExampleB1::MySteppingAction, MyEventAction, and MyRunAction classes. MySteppingAction collects per-step information such as event and track IDs, particle type, positions, energy deposit, step length kinetic energy, volumes, and process name, and fills the analysis ntuple. MyEventAction accumulates the total energy deposit per event, while MyRunAction defines the ntuple structure and writes the output file (ROOT). These defaults can be customized at run time through the analysis manager configuration and macro commands.
+
+ -- HOW TO RUN
+
+    - Execute MyExampleB1 in the 'interactive mode' with visualization:
+        % ./MyExampleB1
+      and type in the commands from run1.mac line by line:
+        Idle> /control/verbose 2
+        Idle> /tracking/verbose 1
+        Idle> /run/beamOn 10        // default particle
+        Idle> ...
+        Idle> exit
+      or
+        Idle> /control/execute run1.mac
+        ....
+        Idle> exit
+
+    - Execute MyExampleB1  in the 'batch' mode from macro files
+      (without visualization)
+        % ./MyExampleB1 run2.mac
+        % ./MyExampleB1 MyExampleB1.in > MyExampleB1.out
+        % ./MyExampleB1 run2.mac > log.txt  //output log file
+
+
