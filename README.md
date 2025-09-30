@@ -1,6 +1,6 @@
-## MyExampleB1-Extended: Pb Radiation Study with Geant4
+## MyExampleB1-Extended: Detector Radiation Study with Geant4
 
-This project extends the official Geant4 B1 example for radiation transport studies in Pb material.
+This project extends the official Geant4 B1 example for radiation transport studies in BGO material.
 It introduces additional scoring and trajectory analysis capabilities with ROOT output.
 
 ⸻
@@ -9,7 +9,7 @@ It introduces additional scoring and trajectory analysis capabilities with ROOT 
 
 ### Geometry
 - **World volume**: air  
-- **Envelope volume**: lead (**Pb**) target  
+- **Envelope volume**: **BGO** target  
 
 ### Physics
 - Based on **FTFP_BERT** physics list  
