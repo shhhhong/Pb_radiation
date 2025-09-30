@@ -36,7 +36,7 @@ It introduces additional scoring and trajectory analysis capabilities with ROOT 
 
 
 ### To compile
-
+mkdir build
 cd build
 cmake ..
 make -j (number of threads of your PC)
